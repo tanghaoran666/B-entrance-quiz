@@ -48,4 +48,10 @@ class StudentsControllerTest {
         assertEquals("盲僧", studentGroupService.getStudents().get(15).getName());
 
     }
+
+    @Test
+    public void shouldDivideGroups()throws Exception {
+        mockMvc.perform(get("/groups"))
+                .andExpect(status().isOk());
+    }
 }

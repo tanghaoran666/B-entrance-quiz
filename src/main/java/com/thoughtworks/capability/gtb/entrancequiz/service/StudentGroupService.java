@@ -3,8 +3,7 @@ package com.thoughtworks.capability.gtb.entrancequiz.service;
 import com.thoughtworks.capability.gtb.entrancequiz.bo.Student;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class StudentGroupService {
@@ -34,5 +33,25 @@ public class StudentGroupService {
     public void createStudent(String name) {
         Student student = new Student(students.size()+1,name);
         students.add(student);
+    }
+
+    public Map getGroups() {
+        Map<Integer,List<Student>> groups = new HashMap<>();
+        for (int i = 1; i <= 6; i++) {
+            groups.put(i,new ArrayList<>());
+        }
+        List<Student> randomLists = new ArrayList<>();
+        for (Student student : students) {
+            randomLists.add(student);
+        }
+        Collections.shuffle(randomLists);
+        int groupIndex = 1;
+        for (int i = 0; i < randomLists.size(); i++) {
+            groups.get(groupIndex).add(randomLists.get(i));
+            groupIndex++;
+            if(groupIndex == 7) groupIndex=1;
+        }
+        return groups;
+
     }
 }
