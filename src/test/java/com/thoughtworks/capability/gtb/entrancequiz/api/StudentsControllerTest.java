@@ -23,11 +23,6 @@ class StudentsControllerTest {
     @Autowired
     StudentGroupService studentGroupService;
 
-    @BeforeEach
-    void setUp(){
-        studentGroupService.init();
-    }
-
     @Test
     public void shouldGetGoods() throws Exception {
 

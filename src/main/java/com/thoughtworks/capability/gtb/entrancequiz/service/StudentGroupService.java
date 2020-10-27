@@ -9,8 +9,7 @@ import java.util.List;
 @Service
 public class StudentGroupService {
     List<Student> students = new ArrayList<>();
-
-    public void init() {
+    {
         students.add(new Student(1,"成吉思汗"));
         students.add(new Student(2,"鲁班七号"));
         students.add(new Student(3,"太乙真人"));
