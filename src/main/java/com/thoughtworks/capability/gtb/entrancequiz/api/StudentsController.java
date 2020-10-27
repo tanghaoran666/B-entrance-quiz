@@ -22,4 +22,10 @@ public class StudentsController {
         return ResponseEntity.ok(students);
     }
 
+    @PostMapping("/student")
+    public ResponseEntity createStudent(@RequestBody String name){
+        studentGroupService.createStudent(name);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
 }

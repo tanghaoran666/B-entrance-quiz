@@ -30,4 +30,9 @@ public class StudentGroupService {
     public List<Student> getStudents() {
         return students;
     }
+
+    public void createStudent(String name) {
+        Student student = new Student(students.size()+1,name);
+        students.add(student);
+    }
 }
