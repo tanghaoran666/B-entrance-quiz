@@ -51,7 +51,14 @@ public class StudentGroupService {
             groupIndex++;
             if(groupIndex == 7) groupIndex=1;
         }
-        return groups;
+        Map<String,List<Student>> groupMap = new HashMap<>();
+        groupMap.put("one",groups.get(1));
+        groupMap.put("two",groups.get(2));
+        groupMap.put("three",groups.get(3));
+        groupMap.put("four",groups.get(4));
+        groupMap.put("five",groups.get(5));
+        groupMap.put("six",groups.get(6));
+        return groupMap;
 
     }
 }
