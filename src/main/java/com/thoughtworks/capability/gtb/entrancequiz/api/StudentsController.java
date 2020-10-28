@@ -1,6 +1,7 @@
 package com.thoughtworks.capability.gtb.entrancequiz.api;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.thoughtworks.capability.gtb.entrancequiz.bo.Group;
 import com.thoughtworks.capability.gtb.entrancequiz.bo.Student;
 import com.thoughtworks.capability.gtb.entrancequiz.service.StudentGroupService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,8 @@ public class StudentsController {
     }
 
     @GetMapping("/groups")
-    public ResponseEntity<Map> getGroups(){
-        Map<Integer,List<Student>> groups = studentGroupService.getGroups();
+    public ResponseEntity<List<Group>> getGroups(){
+        List<Group> groups = studentGroupService.getGroups();
         return ResponseEntity.ok(groups);
     }
 

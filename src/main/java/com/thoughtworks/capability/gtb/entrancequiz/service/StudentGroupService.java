@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb.entrancequiz.service;
 
+import com.thoughtworks.capability.gtb.entrancequiz.bo.Group;
 import com.thoughtworks.capability.gtb.entrancequiz.bo.Student;
 import org.springframework.stereotype.Service;
 
@@ -8,7 +9,7 @@ import java.util.*;
 @Service
 public class StudentGroupService {
     List<Student> students = new ArrayList<>();
-    {
+    StudentGroupService() {
         students.add(new Student(1,"成吉思汗"));
         students.add(new Student(2,"鲁班七号"));
         students.add(new Student(3,"太乙真人"));
@@ -35,30 +36,24 @@ public class StudentGroupService {
         students.add(student);
     }
 
-    public Map getGroups() {
+    public List<Group> getGroups() {
         Map<Integer,List<Student>> groups = new HashMap<>();
         for (int i = 1; i <= 6; i++) {
             groups.put(i,new ArrayList<>());
         }
-        List<Student> randomLists = new ArrayList<>();
-        for (Student student : students) {
-            randomLists.add(student);
-        }
+        List<Student> randomLists = new ArrayList<>(students);
         Collections.shuffle(randomLists);
         int groupIndex = 1;
-        for (int i = 0; i < randomLists.size(); i++) {
-            groups.get(groupIndex).add(randomLists.get(i));
+        for (Student randomList : randomLists) {
+            groups.get(groupIndex).add(randomList);
             groupIndex++;
-            if(groupIndex == 7) groupIndex=1;
+            if (groupIndex == 7) groupIndex = 1;
         }
-        Map<String,List<Student>> groupMap = new HashMap<>();
-        groupMap.put("one",groups.get(1));
-        groupMap.put("two",groups.get(2));
-        groupMap.put("three",groups.get(3));
-        groupMap.put("four",groups.get(4));
-        groupMap.put("five",groups.get(5));
-        groupMap.put("six",groups.get(6));
-        return groupMap;
+        List<Group> groupList = new ArrayList<>();
+        for (int i=1;i<7;i++) {
+            groupList.add(new Group(i,groups.get(i)));
+        }
+        return groupList;
 
     }
 }
