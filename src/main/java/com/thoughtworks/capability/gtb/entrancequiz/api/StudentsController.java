@@ -36,4 +36,11 @@ public class StudentsController {
         return ResponseEntity.ok(groups);
     }
 
+    @PostMapping("/groups")
+    public ResponseEntity<List<Group>> divideGroups(){
+        studentGroupService.divideGroups();
+        List<Group> groups = studentGroupService.getGroups();
+        return ResponseEntity.ok(groups);
+    }
+
 }

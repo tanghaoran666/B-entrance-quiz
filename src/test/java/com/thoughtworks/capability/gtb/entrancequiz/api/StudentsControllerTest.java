@@ -51,7 +51,7 @@ class StudentsControllerTest {
 
     @Test
     public void shouldDivideGroups()throws Exception {
-        mockMvc.perform(get("/groups"))
+        mockMvc.perform(post("/groups"))
                 .andExpect(status().isOk());
     }
 }

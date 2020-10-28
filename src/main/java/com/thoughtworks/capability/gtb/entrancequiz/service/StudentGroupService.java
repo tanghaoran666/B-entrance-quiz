@@ -9,6 +9,7 @@ import java.util.*;
 @Service
 public class StudentGroupService {
     List<Student> students = new ArrayList<>();
+    List<Group> groups = new ArrayList<>();
     StudentGroupService() {
         students.add(new Student(1,"成吉思汗"));
         students.add(new Student(2,"鲁班七号"));
@@ -36,24 +37,28 @@ public class StudentGroupService {
         students.add(student);
     }
 
-    public List<Group> getGroups() {
-        Map<Integer,List<Student>> groups = new HashMap<>();
+    public void divideGroups() {
+        groups.clear();
+        Map<Integer,List<Student>> groupMap = new HashMap<>();
         for (int i = 1; i <= 6; i++) {
-            groups.put(i,new ArrayList<>());
+            groupMap.put(i,new ArrayList<>());
         }
         List<Student> randomLists = new ArrayList<>(students);
         Collections.shuffle(randomLists);
         int groupIndex = 1;
         for (Student randomList : randomLists) {
-            groups.get(groupIndex).add(randomList);
+            groupMap.get(groupIndex).add(randomList);
             groupIndex++;
             if (groupIndex == 7) groupIndex = 1;
         }
-        List<Group> groupList = new ArrayList<>();
         for (int i=1;i<7;i++) {
-            groupList.add(new Group(i,groups.get(i)));
+            groups.add(new Group(i,groupMap.get(i)));
         }
-        return groupList;
+
+    }
+
+    public List<Group> getGroups() {
+        return groups;
 
     }
 }
