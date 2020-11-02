@@ -2,6 +2,7 @@ package com.thoughtworks.capability.gtb.entrancequiz.bo;
 
 import java.util.List;
 
+// TODO GTB-完成度: - Group对象应该包含name属性
 public class Group {
     private int id;
     private List<Student> students;

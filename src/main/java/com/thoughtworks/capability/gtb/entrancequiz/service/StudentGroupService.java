@@ -10,6 +10,7 @@ import java.util.*;
 public class StudentGroupService {
     List<Student> students = new ArrayList<>();
     List<Group> groups = new ArrayList<>();
+    // TODO GTB-知识点: - 应该使用Repository层保存数据
     StudentGroupService() {
         students.add(new Student(1,"成吉思汗"));
         students.add(new Student(2,"鲁班七号"));
@@ -33,13 +34,17 @@ public class StudentGroupService {
     }
 
     public void createStudent(String name) {
+        // TODO GTB-工程实践: - 计算id的方式不够健壮，可以使用字段保存最大id
         Student student = new Student(students.size()+1,name);
         students.add(student);
     }
 
+    // TODO GTB-工程实践: - 长方法，建议抽子方法来提高可读性
     public void divideGroups() {
         groups.clear();
+        // TODO GTB-工程实践: - 为什么不直接使用groups来分组？
         Map<Integer,List<Student>> groupMap = new HashMap<>();
+        // TODO GTB-工程实践: - Magic Number
         for (int i = 1; i <= 6; i++) {
             groupMap.put(i,new ArrayList<>());
         }
@@ -51,6 +56,7 @@ public class StudentGroupService {
             groupIndex++;
             if (groupIndex == 7) groupIndex = 1;
         }
+        // TODO GTB-工程实践: - 注意代码风格，需要适当的添加空格
         for (int i=1;i<7;i++) {
             groups.add(new Group(i,groupMap.get(i)));
         }

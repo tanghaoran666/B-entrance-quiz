@@ -1,5 +1,6 @@
 package com.thoughtworks.capability.gtb.entrancequiz.api;
 
+// TODO GTB-工程实践: - 未使用的import语句
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.thoughtworks.capability.gtb.entrancequiz.bo.Group;
 import com.thoughtworks.capability.gtb.entrancequiz.bo.Student;
@@ -15,6 +16,8 @@ import java.util.Map;
 @RestController
 @CrossOrigin(origins = "http://localhost:1234")
 public class StudentsController {
+
+    // TODO GTB-知识点: - 推荐使用构造器注入
     @Autowired
     StudentGroupService studentGroupService;
 
@@ -24,6 +27,7 @@ public class StudentsController {
         return ResponseEntity.ok(students);
     }
 
+    // TODO GTB-知识点: - 违反Restful实践, url不合理
     @PostMapping("/student")
     public ResponseEntity createStudent(@RequestBody String name){
         studentGroupService.createStudent(name);
@@ -37,6 +41,7 @@ public class StudentsController {
     }
 
     @PostMapping("/groups")
+    // TODO GTB-知识点: - 违反Restful实践, Post请求成功后应该返回201
     public ResponseEntity<List<Group>> divideGroups(){
         studentGroupService.divideGroups();
         List<Group> groups = studentGroupService.getGroups();
